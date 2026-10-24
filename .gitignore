@@ -1,0 +1,10 @@
+.local/
+**/.env
+**/.env.*
+!**/.env.example
+**/node_modules/
+**/vendor/
+**/public/build/
+**/public/hot
+**/database/*.sqlite*
+.DS_Store
