@@ -3,6 +3,7 @@ import { api, money, date, today } from "./api";
 import { Field } from "./Forms";
 import {
     Panel,
+    Tag,
     DataTable,
     FormDialog,
     Feedback,
@@ -355,11 +356,13 @@ export function BankPanel({ can }) {
                                     <td>{money(s.closing_balance)}</td>
                                     <td>{money(s.ledger_closing)}</td>
                                     <td>
-                                        {s.status === "reconciled"
-                                            ? "Rapproché"
-                                            : s.status === "cancelled"
-                                              ? "Annulé"
-                                              : "En cours"}
+                                        <Tag
+                                            value={
+                                                s.status === "draft"
+                                                    ? "in_progress"
+                                                    : s.status
+                                            }
+                                        />
                                     </td>
                                     <td>
                                         {button("Ouvrir", () =>

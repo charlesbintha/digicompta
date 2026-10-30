@@ -17,6 +17,7 @@ import { Field, Modal } from "./Forms";
 
 const labels = {
     draft: "Brouillon",
+    reconciled: "Rapproché",
     accepted: "Accepté",
     declined: "Refusé",
     converted: "Converti",
