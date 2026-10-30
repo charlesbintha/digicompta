@@ -161,3 +161,12 @@ Il s’agit d’une version locale fonctionnelle des modules, pas d’un déploi
 Avant exploitation : validation comptable/fiscale sénégalaise, infrastructure HTTPS et cookies sécurisés, `APP_DEBUG=false`, sauvegarde/restauration PostgreSQL et `APP_KEY`, supervision des workers et du scheduler, pagination/agrégats serveur (les listes métier chargent encore les données de l’entreprise), durcissement de l’administration et tests de charge. Le serveur PHP local reste lié à 127.0.0.1.
 
 Références techniques : [authentification Laravel](https://laravel.com/framework/docs/13.x/authentication), [emails Laravel](https://laravel.com/framework/docs/mail), [notifications Laravel](https://laravel.com/framework/docs/13.x/notifications), [Web Push PHP](https://github.com/web-push-libs/web-push-php), [Vite](https://vite.dev/guide/build).
+
+
+### Déploiement Hostinger — 30 octobre 2026
+
+Cible : https://digicompta.emmaluxury.store/ ; hébergement Business, PHP 8.5 dédié au sous-domaine et MySQL/MariaDB. Les 60 tests métier passent aussi sur MySQL. La configuration locale PostgreSQL et ses données de démonstration sont conservées ; le serveur de production utilise une base vide indépendante.
+
+Les fichiers publics sont à la racine du sous-domaine ; Laravel et ses dépendances de production sont dans `app/`, interdit en HTTP par les deux fichiers `.htaccess`. Le point d’entrée adapte `publicPath` à la racine. La configuration privée `.env` est créée sur le serveur, jamais publiée dans Git. HTTPS, cookies sécurisés et sessions chiffrées sont activés, le debug est désactivé. Aucun seed de démonstration, worker email/push, scheduler ou paiement Wave réel n’est lancé.
+
+La cible est conservée dans `../.hostinger/site.json`. Le déploiement actuel est réalisé à partir d’un paquet local, sans déploiement automatique GitHub. Pour une mise à jour, sauvegarder la base et la configuration serveur avant toute opération de remplacement ; conserver l’APP_KEY et le stockage existants.
